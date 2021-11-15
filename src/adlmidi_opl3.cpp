@@ -36,7 +36,8 @@ static const unsigned OPLBase = 0x388;
 #   if defined(ADLMIDI_DISABLE_NUKED_EMULATOR) && \
        defined(ADLMIDI_DISABLE_DOSBOX_EMULATOR) && \
        defined(ADLMIDI_DISABLE_OPAL_EMULATOR) && \
-       defined(ADLMIDI_DISABLE_JAVA_EMULATOR)
+       defined(ADLMIDI_DISABLE_JAVA_EMULATOR) && \
+       defined(ADLMIDI_DISABLE_CAPTURE_EMULATOR)
 #       error "No emulators enabled. You must enable at least one emulator to use this library!"
 #   endif
 
@@ -60,6 +61,11 @@ static const unsigned OPLBase = 0x388;
 #   ifndef ADLMIDI_DISABLE_JAVA_EMULATOR
 #       include "chips/java_opl3.h"
 #   endif
+
+// Capture emulator
+#   ifndef ADLMIDI_DISABLE_CAPTURE_EMULATOR
+#       include "chips/capture_opl3.hpp"
+#   endif
 #endif
 
 static const unsigned adl_emulatorSupport = 0
@@ -78,6 +84,10 @@ static const unsigned adl_emulatorSupport = 0
 
 #   ifndef ADLMIDI_DISABLE_JAVA_EMULATOR
     | (1u << ADLMIDI_EMU_JAVA)
+#   endif
+
+#   ifndef ADLMIDI_DISABLE_CAPTURE_EMULATOR
+    | (1u << ADLMIDI_EMU_CAPTURE)
 #   endif
 #endif
 ;
@@ -1788,6 +1798,11 @@ void OPL3::reset(int emulator, unsigned long PCM_RATE, void *audioTickHandler)
 #ifndef ADLMIDI_DISABLE_JAVA_EMULATOR
         case ADLMIDI_EMU_JAVA:
             chip = new JavaOPL3;
+            break;
+#endif
+#ifndef ADLMIDI_DISABLE_CAPTURE_EMULATOR
+        case ADLMIDI_EMU_CAPTURE:
+            chip = new CaptureOPL3;
             break;
 #endif
         }
