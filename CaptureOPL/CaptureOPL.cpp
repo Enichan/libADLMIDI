@@ -6,9 +6,11 @@
 #include <map>
 #include <set>
 #include <algorithm>
-#include "OPBinaryLib\opblib.h"
-#include "..\include\adlmidi.h"
-#include "..\src\chips\capture_opl3.hpp"
+#include <vector>
+#include "opblib.h"
+#include "adlmidi.h"
+#include "../src/chips/capture_opl3.hpp"
+#include "../src/chips/capture_cb.hpp"
 
 static bool Silenced = false;
 static ADL_MIDIPlayer* MidiPlayer = NULL;

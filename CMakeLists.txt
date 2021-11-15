@@ -262,6 +262,8 @@ set(libADLMIDI_SOURCES
     ${libADLMIDI_SOURCE_DIR}/src/adlmidi_opl3.cpp
     ${libADLMIDI_SOURCE_DIR}/src/adlmidi_private.cpp
     ${libADLMIDI_SOURCE_DIR}/src/wopl/wopl_file.c
+    ${libADLMIDI_SOURCE_DIR}/src/chips/capture_opl3.cpp
+    ${libADLMIDI_SOURCE_DIR}/src/chips/capture_cb.cpp
 )
 
 # === Static library ====
@@ -383,6 +385,9 @@ foreach(lib ADLMIDI_static ADLMIDI_shared)
         list(APPEND libADLMIDI_INSTALLS ${lib})
     endif()
 endforeach()
+
+
+add_subdirectory(CaptureOPL)
 
 install(TARGETS ${libADLMIDI_INSTALLS}
         RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
