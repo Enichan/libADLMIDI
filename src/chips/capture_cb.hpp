@@ -23,16 +23,13 @@
 
 #include "stdint.h"
 
-typedef struct RegWriteCmd {
-    uint16_t addr;
-    uint8_t data;
-} RegWriteCmd;
+#include "adlmidi.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif    
 
-typedef void (*captureCallbackFunc)(RegWriteCmd* commands, size_t count);
+
 extern captureCallbackFunc captureCallback;
 
 void captureOPL3_setCallback(captureCallbackFunc cb);

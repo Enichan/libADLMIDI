@@ -1285,6 +1285,32 @@ extern ADLMIDI_DECLSPEC void adl_setDebugMessageHook(struct ADL_MIDIPlayer *devi
  */
 extern ADLMIDI_DECLSPEC int adl_describeChannels(struct ADL_MIDIPlayer *device, char *text, char *attr, size_t size);
 
+
+/* ======== OPL3 Support ======== */
+
+/**
+ * @brief placeholder doc string
+ */
+typedef struct RegWriteCmd {
+    /*! placeholder doc string */
+	uint16_t addr;
+    /*! placeholder doc string */
+	uint8_t data;
+} RegWriteCmd;
+
+/**
+ * @brief placeholder doc string
+ * @param commands placeholder doc string
+ * @param count placeholder doc string
+ */
+typedef void (*captureCallbackFunc)(RegWriteCmd* commands, size_t count);
+
+/**
+ * @brief placeholder doc string
+ * @param cb placeholder doc string
+ */
+extern ADLMIDI_DECLSPEC void captureOPL3_setCallback(captureCallbackFunc cb);
+
 #ifdef __cplusplus
 }
 #endif
