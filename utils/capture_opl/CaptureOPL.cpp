@@ -7,8 +7,8 @@
 #include <set>
 #include <algorithm>
 #include "OPBinaryLib\opblib.h"
-#include "..\include\adlmidi.h"
-#include "..\src\chips\capture_opl3.hpp"
+#include "adlmidi.h"
+#include "chips\capture_opl3.hpp"
 
 static bool Silenced = false;
 static ADL_MIDIPlayer* MidiPlayer = NULL;
