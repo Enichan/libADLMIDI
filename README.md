@@ -1,5 +1,31 @@
 This is a fork of libADLMIDI that adds an OPL register write capture chip and the CaptureOPL utility which converts OPL command streams to the [OPB music format](https://github.com/Enichan/OPBinaryLib). CaptureOPL is licensed the same as libADLMIDI (GPL) and [OPBinaryLib](https://github.com/Enichan/OPBinaryLib) is licensed MIT.
 
+To build libADLMIDI and CaptureOPL.exe under Windows with Visual Studio:
+
+- Clone this repository
+- Right click the newly cloned libADLMIDI folder and select "Open with Visual Studio"
+- Select the desired configuration
+- Build
+
+Visual Studio's CMakeSettings.json are configured to compile libADLMIDI with the following CMake options turned on for CaptureOPL:
+
+- libADLMIDI_STATIC
+- USE_CAPTURE_EMULATOR
+- WITH_EMBEDDED_BANKS
+- WITH_MIDI_SEQUENCER
+
+Because CaptureOPL doesn't generate audio these options are turned off:
+
+- USE_DOSBOX_EMULATOR
+- USE_NUKED_EMULATOR
+- USE_OPAL_EMULATOR
+- USE_JAVA_EMULATOR
+
+libADLMIDI also comes with the following options turned on by default, which should allow CaptureOPL to capture from MUS and XMI files:
+
+- WITH_MUS_SUPPORT
+- WITH_XMI_SUPPORT
+
 # libADLMIDI
 libADLMIDI is a free Software MIDI synthesizer library with OPL3 emulation
 
