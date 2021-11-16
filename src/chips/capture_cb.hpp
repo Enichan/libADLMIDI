@@ -21,8 +21,6 @@
 #ifndef CAPTURE_CB_H
 #define CAPTURE_CB_H
 
-#include "stdint.h"
-
 #include "adlmidi.h"
 
 #ifdef __cplusplus
@@ -30,9 +28,9 @@ extern "C" {
 #endif    
 
 
-extern captureCallbackFunc captureCallback;
+extern ADL_CaptureHandler captureCallback;
 
-void captureOPL3_setCallback(captureCallbackFunc cb);
+void adl_setCaptureCallback(ADL_CaptureHandler cb);
 
 #ifdef __cplusplus
 }

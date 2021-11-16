@@ -27,7 +27,7 @@
 
 class CaptureOPL3 final : public OPLChipBaseBufferedT<CaptureOPL3>
 {
-    std::vector<RegWriteCmd> m_cmdbuff;
+    std::vector<ADL_CaptureCmd> m_cmdbuff;
 public:
     CaptureOPL3();
     ~CaptureOPL3() override;

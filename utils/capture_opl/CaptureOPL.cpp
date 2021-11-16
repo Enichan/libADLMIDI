@@ -7,7 +7,7 @@
 #include <set>
 #include <algorithm>
 #include <vector>
-#include "opblib.h"
+#include "OPBinaryLib\opblib.h"
 #include "adlmidi.h"
 
 static bool Silenced = false;
@@ -18,17 +18,17 @@ static ADL_MIDIPlayer* MidiPlayer = NULL;
 
 static std::vector<OPB_Command> CommandStream;
 
-void writeRegCB(RegWriteCmd* commands, size_t count) {
+void writeRegCB(ADL_CaptureCmd* commands, size_t count) {
     double time = adl_positionTell(MidiPlayer);
 
     for (int i = 0; i < count; i++) {
-        RegWriteCmd cmd = *(commands + i);
+        ADL_CaptureCmd cmd = *(commands + i);
         CommandStream.push_back({ cmd.addr, cmd.data, time });
     }
 }
 
 void InitCapture() {
-    captureOPL3_setCallback(&writeRegCB);
+    adl_setCaptureCallback(&writeRegCB);
     CommandStream.clear();
 }
 

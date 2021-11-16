@@ -137,7 +137,8 @@ option(WITH_EMBEDDED_BANKS  "Use embedded banks" ON)
 option(WITH_HQ_RESAMPLER    "Build with support for high quality resampling" OFF)
 option(WITH_MUS_SUPPORT     "Build with support for DMX MUS files" ON)
 option(WITH_XMI_SUPPORT     "Build with support for AIL XMI files" ON)
-option(USE_DOSBOX_EMULATOR  "Use DosBox 0.74 OPL3 emulator (semi-accurate, suggested for slow or mobile platforms)" ON)
+option(USE_CAPTURE_EMULATOR "Use OPL register capture chip" ON)
+option(USE_DOSBOX_EMULATOR  "Use DosBox 0.74 OPL3 emulator (semi-accurate, suggested for slow or mobile platforms)" OFF)
 option(USE_NUKED_EMULATOR   "Use Nuked OPL3 emulator (most accurate, powerful)" ${DEFAULT_HEAVY_EMULATORS})
 option(USE_OPAL_EMULATOR    "Use Opal emulator (inaccurate)" ${DEFAULT_HEAVY_EMULATORS})
 option(USE_JAVA_EMULATOR    "Use JavaOPL emulator" ${DEFAULT_HEAVY_EMULATORS})
@@ -145,6 +146,7 @@ option(USE_JAVA_EMULATOR    "Use JavaOPL emulator" ${DEFAULT_HEAVY_EMULATORS})
 option(WITH_GENADLDATA      "Build and run full rebuild of embedded banks cache" OFF)
 option(WITH_GENADLDATA_COMMENTS "Enable comments in a generated embedded instruments cache file" OFF)
 
+option(WITH_CAPTURE_OPL     "Build CaptureOPL utility (to be used with OPL register capture chip" ON)
 option(WITH_MIDIPLAY        "Build also demo MIDI player" OFF)
 option(MIDIPLAY_WAVE_ONLY   "Build Demo MIDI player without support of real time playing. It will output into WAV only." OFF)
 option(WITH_ADLMIDI2        "Build also classic ADLMIDI player [EXPERIMENTAL]" OFF)
@@ -184,6 +186,18 @@ function(handle_options targetLib)
     endif()
 
     if(NOT ADLMIDI_DOS)
+        if(USE_CAPTURE_EMULATOR)
+            set(HAS_EMULATOR TRUE)
+            target_sources(${targetLib} PRIVATE
+                ${libADLMIDI_SOURCE_DIR}/src/chips/capture_cb.cpp
+                ${libADLMIDI_SOURCE_DIR}/src/chips/capture_cb.hpp
+                ${libADLMIDI_SOURCE_DIR}/src/chips/capture_opl3.cpp
+                ${libADLMIDI_SOURCE_DIR}/src/chips/capture_opl3.hpp
+            )
+        else()
+            target_compile_definitions(${targetLib} PUBLIC ADLMIDI_DISABLE_CAPTURE_EMULATOR)
+        endif()
+
         if(USE_DOSBOX_EMULATOR)
             set(HAS_EMULATOR TRUE)
             target_sources(${targetLib} PRIVATE
@@ -351,6 +365,10 @@ if(WITH_EMBEDDED_BANKS AND WITH_GENADLDATA AND NOT ADLMIDI_DOS)
     add_subdirectory(utils/gen_adldata)
 endif()
 
+if(WITH_CAPTURE_OPL)
+    add_subdirectory(utils/capture_opl)
+endif()
+
 if(WITH_MIDIPLAY)
     add_subdirectory(utils/midiplay)
 endif()
@@ -386,8 +404,6 @@ foreach(lib ADLMIDI_static ADLMIDI_shared)
     endif()
 endforeach()
 
-
-add_subdirectory(CaptureOPL)
 
 install(TARGETS ${libADLMIDI_INSTALLS}
         RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
@@ -442,6 +458,7 @@ message("WITH_EMBEDDED_BANKS      = ${WITH_EMBEDDED_BANKS}")
 message("WITH_HQ_RESAMPLER        = ${WITH_HQ_RESAMPLER}")
 message("WITH_MUS_SUPPORT         = ${WITH_MUS_SUPPORT}")
 message("WITH_XMI_SUPPORT         = ${WITH_XMI_SUPPORT}")
+message("USE_CAPTURE_EMULATOR     = ${USE_CAPTURE_EMULATOR}")
 message("USE_DOSBOX_EMULATOR      = ${USE_DOSBOX_EMULATOR}")
 message("USE_NUKED_EMULATOR       = ${USE_NUKED_EMULATOR}")
 message("USE_OPAL_EMULATOR        = ${USE_OPAL_EMULATOR}")
@@ -451,6 +468,7 @@ message("===== Utils and extras =====")
 message("WITH_GENADLDATA          = ${WITH_GENADLDATA}")
 message("WITH_GENADLDATA_COMMENTS = ${WITH_GENADLDATA_COMMENTS}")
 
+message("WITH_CAPTURE_OPL         = ${WITH_CAPTURE_OPL}")
 message("WITH_MIDIPLAY            = ${WITH_MIDIPLAY}")
 message("MIDIPLAY_WAVE_ONLY       = ${MIDIPLAY_WAVE_ONLY}")
 message("WITH_ADLMIDI2            = ${WITH_ADLMIDI2}")

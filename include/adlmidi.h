@@ -43,7 +43,7 @@ extern "C" {
 
 #include <stddef.h>
 
-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
+#if (defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)) || (defined(_MSC_VER))
 #include <stdint.h>
 typedef uint8_t         ADL_UInt8;
 typedef uint16_t        ADL_UInt16;
@@ -1286,30 +1286,30 @@ extern ADLMIDI_DECLSPEC void adl_setDebugMessageHook(struct ADL_MIDIPlayer *devi
 extern ADLMIDI_DECLSPEC int adl_describeChannels(struct ADL_MIDIPlayer *device, char *text, char *attr, size_t size);
 
 
-/* ======== OPL3 Support ======== */
+/* ======== OPL3 Capture Chip Support ======== */
 
 /**
  * @brief placeholder doc string
  */
-typedef struct RegWriteCmd {
+typedef struct ADL_CaptureCmd {
     /*! placeholder doc string */
-	uint16_t addr;
+	ADL_UInt16 addr;
     /*! placeholder doc string */
-	uint8_t data;
-} RegWriteCmd;
+	ADL_UInt8 data;
+} ADL_CaptureCmd;
 
 /**
  * @brief placeholder doc string
  * @param commands placeholder doc string
  * @param count placeholder doc string
  */
-typedef void (*captureCallbackFunc)(RegWriteCmd* commands, size_t count);
+typedef void (*ADL_CaptureHandler)(ADL_CaptureCmd* commands, size_t count);
 
 /**
  * @brief placeholder doc string
  * @param cb placeholder doc string
  */
-extern ADLMIDI_DECLSPEC void captureOPL3_setCallback(captureCallbackFunc cb);
+extern ADLMIDI_DECLSPEC void adl_setCaptureCallback(ADL_CaptureHandler cb);
 
 #ifdef __cplusplus
 }

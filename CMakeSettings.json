@@ -1,0 +1,216 @@
+﻿{
+  "configurations": [
+    {
+      "name": "x64-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "variables": [
+        {
+          "name": "libADLMIDI_STATIC",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_CAPTURE_EMULATOR",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "WITH_EMBEDDED_BANKS",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "WITH_MIDI_SEQUENCER",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_DOSBOX_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_NUKED_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_OPAL_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_JAVA_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        }
+      ]
+    },
+    {
+      "name": "x64-Release",
+      "generator": "Ninja",
+      "configurationType": "RelWithDebInfo",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "variables": [
+        {
+          "name": "libADLMIDI_STATIC",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_CAPTURE_EMULATOR",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "WITH_EMBEDDED_BANKS",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "WITH_MIDI_SEQUENCER",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_DOSBOX_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_NUKED_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_OPAL_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_JAVA_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        }
+      ]
+    },
+    {
+      "name": "x86-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "msvc_x86" ],
+      "variables": [
+        {
+          "name": "libADLMIDI_STATIC",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_CAPTURE_EMULATOR",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "WITH_EMBEDDED_BANKS",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "WITH_MIDI_SEQUENCER",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_DOSBOX_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_NUKED_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_OPAL_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_JAVA_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        }
+      ]
+    },
+    {
+      "name": "x86-Release",
+      "generator": "Ninja",
+      "configurationType": "RelWithDebInfo",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "msvc_x86" ],
+      "variables": [
+        {
+          "name": "libADLMIDI_STATIC",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_CAPTURE_EMULATOR",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "WITH_EMBEDDED_BANKS",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "WITH_MIDI_SEQUENCER",
+          "value": "true",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_DOSBOX_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_NUKED_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_OPAL_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "USE_JAVA_EMULATOR",
+          "value": "False",
+          "type": "BOOL"
+        }
+      ]
+    }
+  ]
+}

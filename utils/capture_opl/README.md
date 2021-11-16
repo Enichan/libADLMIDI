@@ -1,0 +1,1 @@
+This is a fork of libADLMIDI that adds an OPL register write capture chip and the CaptureOPL utility which converts OPL command streams to the [OPB music format](https://github.com/Enichan/OPBinaryLib). CaptureOPL is licensed the same as libADLMIDI (GPL) and [OPBinaryLib](https://github.com/Enichan/OPBinaryLib) is licensed MIT.

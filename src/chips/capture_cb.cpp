@@ -21,8 +21,8 @@
 #include "capture_cb.hpp"
 #include "capture_opl3.hpp"
 
-captureCallbackFunc captureCallback;
+ADL_CaptureHandler captureCallback;
 
-void captureOPL3_setCallback(captureCallbackFunc cb) {
+void adl_setCaptureCallback(ADL_CaptureHandler cb) {
     captureCallback = cb;
 }
