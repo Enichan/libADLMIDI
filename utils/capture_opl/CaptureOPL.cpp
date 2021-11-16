@@ -280,6 +280,7 @@ int main(int argc, char* argv[])
 
     if (OPB_OplToFile(OPB_Format_Default, CommandStream.data(), CommandStream.size(), outPath.c_str())) {
         CAPTUREOPL_LOG("Some errors occurred while converting to OPB\n");
+        exit(1);
     }
     else {
         CAPTUREOPL_LOG("Done!\n");
