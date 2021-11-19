@@ -63,7 +63,7 @@ void OPB_LogImpl(const char* s) {
 int main(int argc, char* argv[])
 {
     if (argc < 2) {
-        std::cout << "Usage: " << GetFilename(argv[0]) << " <inmidi> [outfile] [-b (bank|woplfile)] [-s]\n";
+        std::cout << "Usage: " << GetFilename(argv[0]) << " <inmidi> [outfile] [-b (bank|woplfile)] [-s] [-v]\n";
         std::cout << "  inmidi      Midi file to convert to OPB format\n";
         std::cout << "  outfile     OPB target output filename\n";
         std::cout << "\n";
@@ -72,6 +72,8 @@ int main(int argc, char* argv[])
         std::cout << "    Use embedded or external soundbank:\n";
         std::cout << "    woplfile    External soundbank (WOPL format)\n";
         std::cout << "    bank        Internal soundbank index\n";
+        std::cout << "  -v\n";
+        std::cout << "    Output in RAW OPB format\n";
         std::cout << "  -s\n";
         std::cout << "    Silence output\n";
         std::cout << "\n";
@@ -161,6 +163,7 @@ int main(int argc, char* argv[])
     }
 
     std::string bankStr = "";
+    OPB_Format format = OPB_Format_Default;
 
     for (int i = 2; i < argc; i++) {
         std::string arg = argv[i];
@@ -170,6 +173,9 @@ int main(int argc, char* argv[])
         }
         else if (arg == "-s") {
             Silenced = true;
+        }
+        else if (arg == "-v") {
+            format = OPB_Format_Raw;
         }
     }
 
@@ -278,7 +284,7 @@ int main(int argc, char* argv[])
     // set OPBinaryLib logging function
     OPB_Log = OPB_LogImpl;
 
-    if (OPB_OplToFile(OPB_Format_Default, CommandStream.data(), CommandStream.size(), outPath.c_str())) {
+    if (OPB_OplToFile(format, CommandStream.data(), CommandStream.size(), outPath.c_str())) {
         CAPTUREOPL_LOG("Some errors occurred while converting to OPB\n");
         exit(1);
     }
